@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authentication</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>welcome to BMI tracker</h1>
+            <p>Create an account or log in to continue.</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('create-account')">Create Account</button>
+            <button class="tab-button" onclick="showTab('login')">Log In</button>
+        </div>
+
+        <div class="tab-content">
+            <!-- Create Account Form -->
+            <div id="create-account" class="tab active">
+                <h2>Create Account</h2>
+                <input type="text" id="create-username" placeholder="Username" required>
+                <input type="text" id="create-firstname" placeholder="First Name" required>
+                <input type="text" id="create-lastname" placeholder="Last Name" required>
+                <input type="password" id="create-password" placeholder="Password" required>
+                <button onclick="createAccount()">Create Account</button>
+            </div>
+
+            <!-- Log In Form -->
+            <div id="login" class="tab">
+                <h2>Log In</h2>
+                <input type="text" id="login-username" placeholder="Username" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button onclick="logIn()">Log In</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab');
+            const buttons = document.querySelectorAll('.tab-button');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
