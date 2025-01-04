@@ -3,101 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personalized Suggestions</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Recommendation</title>
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
   <div class="container">
-    <h1>Personalized Suggestions</h1>
-    <div id="suggestions">
-      <h2 id="category"></h2>
+    <h1>Please Fill-up This Form</h1>
+    <form id="userDetailsForm">
+      <label for="userDiet">Your Diet Preference:</label>
+      <select id="userDiet" required>
+        <option value="veg">Vegetarian</option>
+        <option value="non-veg">Non-Vegetarian</option>
+      </select>
+
+      <label for="userActivity">Activity Level:</label>
+      <select id="userActivity" required>
+        <option value="low">Low (e.g., sedentary lifestyle)</option>
+        <option value="moderate">Moderate (e.g., regular light activity)</option>
+        <option value="high">High (e.g., intense physical activity)</option>
+      </select>
+
+      <label for="userRegion">Food Preference:</label>
+      <select id="userRegion" required>
+        <option value="south-indian">South Indian</option>
+        <option value="north-indian">North Indian</option>
+      </select>
+
+      <label for="userAllergies">Allergies (if any):</label>
+      <input type="text" id="userAllergies" placeholder="e.g., nuts, dairy">
+
+      <label for="userFavorites">Favorite Foods:</label>
+      <input type="text" id="userFavorites" placeholder="e.g., pasta, biryani">
+
+      <label for="userDislikes">Disliked Foods:</label>
+      <input type="text" id="userDislikes" placeholder="e.g., broccoli, spinach">
+
+      <label for="userHydration">Hydration (liters per day):</label>
+      <input type="number" id="userHydration" placeholder="e.g., 2.5" step="0.1" min="0">
+
+      <fieldset>
+        <legend>Typical Daily Intake</legend>
+        <label for="breakfast">Breakfast:</label>
+        <input type="text" id="breakfast" placeholder="e.g., dosa, eggs"><br><br>
+
+        <label for="lunch">Lunch:</label>
+        <input type="text" id="lunch" placeholder="e.g., rice, chapati"><br><br>
+
+        <label for="dinner">Dinner:</label>
+        <input type="text" id="dinner" placeholder="e.g., soup, curry"><br><br>
+
+        <label for="snacks">Snacks:</label>
+        <input type="text" id="snacks" placeholder="e.g., fruits, nuts"><br><br>
+      </fieldset>
+
+      <label for="userHealthGoals">Your Health Goals:</label>
+      <input type="text" id="userHealthGoals" placeholder="e.g., Weight loss, muscle gain" required />
+
+      <button type="button" id="getSuggestionsBtn">Get Suggestions</button>
+    </form>
+
+    <div id="suggestions" style="display: none;">
+      <h2>Personalized Plan</h2>
       <h3>Diet Plan</h3>
-      <div id="dietPlan">
-        <h4>Breakfast:</h4>
-        <p id="breakfast"></p>
-        <h4>Lunch:</h4>
-        <p id="lunch"></p>
-        <h4>Snacks (Tiffin):</h4>
-        <p id="snacks"></p>
-        <h4>Dinner:</h4>
-        <p id="dinner"></p>
-      </div>
-      <h3>Exercise Recommendations</h3>
+      <p id="dietPlan"></p>
+      <h3>Exercise Plan</h3>
       <p id="exercisePlan"></p>
     </div>
   </div>
-  
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const category = params.get("category");
-    const dietPreference = params.get("diet");
-
-    const suggestions = {
-      Obese: {
-        veg: {
-          breakfast: "Oats porridge with almond milk and fresh fruits, whole-grain toast with avocado spread.",
-          lunch: "Quinoa salad with chickpeas, cucumbers, and tahini dressing; lentil soup.",
-          snacks: "Mixed nuts (unsalted), carrot and cucumber sticks with hummus.",
-          dinner: "Grilled tofu with sautéed vegetables, a small bowl of brown rice.",
-          exercise: "Start with 30-minute brisk walks, yoga, and light aerobic exercises.",
-        },
-        "non-veg": {
-          breakfast: "Scrambled eggs with spinach, grilled chicken sausage, and whole-grain toast.",
-          lunch: "Grilled chicken salad with olive oil dressing, quinoa with roasted veggies.",
-          snacks: "Boiled eggs, Greek yogurt with berries, or a handful of almonds.",
-          dinner: "Grilled fish (salmon or tilapia) with steamed broccoli and a small portion of mashed sweet potatoes.",
-          exercise: "Include swimming, light strength training, and cycling for 30–45 minutes daily.",
-        },
-      },
-      Normal: {
-        veg: {
-          breakfast: "Vegetable poha with peanuts, a glass of fresh orange juice.",
-          lunch: "Vegetable biryani with raita, a small green salad.",
-          snacks: "Roasted chana, an apple or a banana.",
-          dinner: "Whole-grain roti with mixed vegetable curry and a bowl of dal.",
-          exercise: "Maintain activity with jogging, yoga, or cycling for 20–30 minutes.",
-        },
-        "non-veg": {
-          breakfast: "Omelette with vegetables, whole-grain toast, and a glass of milk.",
-          lunch: "Grilled chicken wrap with lettuce, tomatoes, and a light dressing.",
-          snacks: "A handful of walnuts or trail mix, a small smoothie.",
-          dinner: "Chicken curry with a small serving of rice and sautéed greens.",
-          exercise: "Focus on cardio activities like jogging or interval training for 20–30 minutes.",
-        },
-      },
-      Underweight: {
-        veg: {
-          breakfast: "Banana smoothie with peanut butter, a bowl of muesli with almond milk.",
-          lunch: "Paneer butter masala with paratha and a side of mixed vegetable salad.",
-          snacks: "Dry fruits like dates, cashews, or a bowl of yogurt with honey.",
-          dinner: "Stuffed capsicum with brown rice and a bowl of dal tadka.",
-          exercise: "Perform moderate strength training to build muscle mass.",
-        },
-        "non-veg": {
-          breakfast: "Egg and cheese sandwich, a glass of full-fat milk or a protein shake.",
-          lunch: "Grilled chicken breast with pasta in a light tomato sauce and a green salad.",
-          snacks: "Peanut butter toast, a boiled egg, or a small milkshake.",
-          dinner: "Fish curry with whole-grain rice and roasted vegetables.",
-          exercise: "Incorporate weightlifting or resistance training into your routine.",
-        },
-      },
-    };
-
-    const currentSuggestion = suggestions[category]?.[dietPreference] || {
-      breakfast: "Balanced breakfast with protein, carbs, and healthy fats.",
-      lunch: "Lean proteins, whole grains, and a variety of vegetables.",
-      snacks: "Light and nutrient-dense options like fruits or nuts.",
-      dinner: "Low-fat, high-protein meals with plenty of vegetables.",
-      exercise: "Include a mix of strength and cardio exercises.",
-    };
-
-    document.getElementById("category").textContent = `Category: ${category}`;
-    document.getElementById("breakfast").textContent = currentSuggestion.breakfast;
-    document.getElementById("lunch").textContent = currentSuggestion.lunch;
-    document.getElementById("snacks").textContent = currentSuggestion.snacks;
-    document.getElementById("dinner").textContent = currentSuggestion.dinner;
-    document.getElementById("exercisePlan").textContent = currentSuggestion.exercise;
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
