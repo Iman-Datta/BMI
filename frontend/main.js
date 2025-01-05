@@ -2,7 +2,8 @@ let weight
 let height
 let gender
 let age
-
+let bmi
+let suggestions
 const calculateBtn = document.getElementById("calculateBtn");
 
 if (calculateBtn) {
@@ -30,6 +31,7 @@ if (calculateBtn) {
       const result = await response.json();
 
       if (response.ok) {
+        bmi = result.bmi
         document.getElementById(
           "bmiResult"
         ).textContent = `Your BMI is: ${result.bmi}`;
@@ -39,7 +41,7 @@ if (calculateBtn) {
         document.getElementById("solutionBtn").style.display = "block";
 
         document.getElementById("solutionBtn").onclick = function () {
-          window.location.href = `solution.html?category=${result.category}`;
+          window.location.href = "solution.html";
         };
       } else {
         alert(result.error || "An error occurred.");
@@ -82,6 +84,7 @@ if (getSuggestionsBtn) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
+            bmi,
             age,
             gender,
             height,
@@ -99,17 +102,22 @@ if (getSuggestionsBtn) {
         }
       );
 
-      const result = await response.json();
+      const result = await response.json(); //result should be global variable
 
       console.log(result);
 
-      // if (response.ok) {
-      //   document.getElementById("dietPlan").textContent = result.dietPlan;
-      //   document.getElementById("exercisePlan").textContent = result.exercisePlan;
-      //   document.getElementById("suggestions").style.display = "block";
-      // } else {
-      //   alert(result.error || "An error occurred while fetching suggestions.");
-      // }
+      if (response.ok) {
+        suggestions = result
+        // next page
+        document.getElementById("breakfast").textContent = result.dietPlan.breakfast;
+        document.getElementById("lunch").textContent = result.dietPlan.lunch;
+        document.getElementById("snacks").textContent = result.dietPlan.snacks;
+        document.getElementById("dinner").textContent = result.dietPlan.dinner;
+        document.getElementById("exercisePlan").textContent = result.exercisePlan;
+        document.getElementById("suggestions").style.display = "block";
+      } else {
+        alert(result.error || "An error occurred while fetching suggestions.");
+      }
     } catch (error) {
       console.log(error);
       alert("Failed to connect to the server. Please try again.");
