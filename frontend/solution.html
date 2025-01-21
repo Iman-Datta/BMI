@@ -1,84 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recommendation</title>
-  <link rel="stylesheet" href="main.css">
-</head>
-<body>
-  <div class="container">
-    <h1>Please Fill-up This Form</h1>
-    <form id="userDetailsForm">
-      <label for="userDiet">Your Diet Preference:</label>
-      <select id="userDiet" required>
-        <option value="veg">Vegetarian</option>
-        <option value="non-veg">Non-Vegetarian</option>
-      </select>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recommendation</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Please Fill-up This Form</h1>
+      <form id="userDetailsForm">
+        <label for="userDiet">Your Diet Preference:</label>
+        <select id="userDiet" required>
+          <option value="veg">Vegetarian</option>
+          <option value="non-veg">Non-Vegetarian</option>
+        </select>
 
-      <label for="userActivity">Activity Level:</label>
-      <select id="userActivity" required>
-        <option value="low">Low (e.g., sedentary lifestyle)</option>
-        <option value="moderate">Moderate (e.g., regular light activity)</option>
-        <option value="high">High (e.g., intense physical activity)</option>
-      </select>
+        <label for="userActivity">Activity Level:</label>
+        <select id="userActivity" required>
+          <option value="low">Low (e.g., sedentary lifestyle)</option>
+          <option value="moderate">
+            Moderate (e.g., regular light activity)
+          </option>
+          <option value="high">High (e.g., intense physical activity)</option>
+        </select>
 
-      <label for="userRegion">Food Preference:</label>
-      <select id="userRegion" required>
-        <option value="south-indian">South Indian</option>
-        <option value="north-indian">North Indian</option>
-      </select>
+        <label for="userRegion">Food Preference:</label>
+        <select id="userRegion" required>
+          <option value="south-indian">South Indian</option>
+          <option value="north-indian">North Indian</option>
+        </select>
 
-      <label for="userAllergies">Allergies (if any):</label>
-      <input type="text" id="userAllergies" placeholder="e.g., nuts, dairy">
+        <label for="userAllergies">Allergies (if any):</label>
+        <input type="text" id="userAllergies" placeholder="e.g., nuts, dairy" />
 
-      <label for="userFavorites">Favorite Foods:</label>
-      <input type="text" id="userFavorites" placeholder="e.g., pasta, biryani">
+        <label for="userFavorites">Favorite Foods:</label>
+        <input
+          type="text"
+          id="userFavorites"
+          placeholder="e.g., pasta, biryani"
+        />
 
-      <label for="userDislikes">Disliked Foods:</label>
-      <input type="text" id="userDislikes" placeholder="e.g., broccoli, spinach">
+        <label for="userDislikes">Disliked Foods:</label>
+        <input
+          type="text"
+          id="userDislikes"
+          placeholder="e.g., broccoli, spinach"
+        />
 
-      <label for="userHydration">Hydration (liters per day):</label>
-      <input type="number" id="userHydration" placeholder="e.g., 2.5" step="0.1" min="0">
+        <label for="userHydration">Hydration (liters per day):</label>
+        <input
+          type="number"
+          id="userHydration"
+          placeholder="e.g., 2.5"
+          step="0.1"
+          min="0"
+        />
 
-      <fieldset>
-        <legend>Typical Daily Intake</legend>
-        <label for="breakfast">Breakfast:</label>
-        <input type="text" id="breakfast" placeholder="e.g., dosa, eggs"><br><br>
+        <fieldset>
+          <legend>Typical Daily Intake</legend>
+          <label for="breakfast">Breakfast:</label>
+          <input
+            type="text"
+            id="breakfast"
+            placeholder="e.g., dosa, eggs"
+          /><br /><br />
 
-        <label for="lunch">Lunch:</label>
-        <input type="text" id="lunch" placeholder="e.g., rice, chapati"><br><br>
+          <label for="lunch">Lunch:</label>
+          <input
+            type="text"
+            id="lunch"
+            placeholder="e.g., rice, chapati"
+          /><br /><br />
 
-        <label for="dinner">Dinner:</label>
-        <input type="text" id="dinner" placeholder="e.g., soup, curry"><br><br>
+          <label for="dinner">Dinner:</label>
+          <input
+            type="text"
+            id="dinner"
+            placeholder="e.g., soup, curry"
+          /><br /><br />
 
-        <label for="snacks">Snacks:</label>
-        <input type="text" id="snacks" placeholder="e.g., fruits, nuts"><br><br>
-      </fieldset>
+          <label for="snacks">Snacks:</label>
+          <input
+            type="text"
+            id="snacks"
+            placeholder="e.g., fruits, nuts"
+          /><br /><br />
+        </fieldset>
 
-      <label for="userHealthGoals">Your Health Goals:</label>
-      <input type="text" id="userHealthGoals" placeholder="e.g., Weight loss, muscle gain" required />
+        <label for="userHealthGoals">Your Health Goals:</label>
+        <input
+          type="text"
+          id="userHealthGoals"
+          placeholder="e.g., Weight loss, muscle gain"
+          required
+        />
 
-      <button type="button" id="getSuggestionsBtn">Get Suggestions</button>
-    </form>
+        <button type="button" id="getSuggestionsBtn">Get Suggestions</button>
+      </form>
 
-    <div id="suggestions" style="display: none;">
-      
-      <h2>Personalized Plan</h2>
-      <h3>Diet Plan</h3>
-      <h4>Breakfast</h4>
-      <p id="breakfast"></p>
-      <h4>Lunch</h4>
-      <p id="lunch"></p>
-      <h4>Snacks</h4>
-      <p id="snacks"></p>
-      <h4>Dinner</h4>
-      <p id="dinner"></p>
-      <h3>Exercise Plan</h3>
-      <p id="exercisePlan"></p>
+      <div id="suggestions" style="display: none">
+        <h2>Personalized Plan</h2>
+        <h3>Diet Plan</h3>
+        <h4>Breakfast</h4>
+        <p id="sug_breakfast"></p>
+        <h4>Lunch</h4>
+        <p id="sug_lunch"></p>
+        <h4>Snacks</h4>
+        <p id="sug_snacks"></p>
+        <h4>Dinner</h4>
+        <p id="sug_dinner"></p>
+        <h3>Exercise Plan</h3>
+        <p id="sug_exercisePlan"></p>
+      </div>
     </div>
-  </div>
 
-  <script src="main.js"></script>
-</body>
+    <script src="main.js"></script>
+  </body>
 </html>

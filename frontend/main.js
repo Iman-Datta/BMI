@@ -1,9 +1,9 @@
-let weight
-let height
-let gender
-let age
-let bmi
-let suggestions
+let weight;
+let height;
+let gender;
+let age;
+let bmi;
+let suggestions;
 const calculateBtn = document.getElementById("calculateBtn");
 
 if (calculateBtn) {
@@ -31,7 +31,7 @@ if (calculateBtn) {
       const result = await response.json();
 
       if (response.ok) {
-        bmi = result.bmi
+        bmi = result.bmi;
         document.getElementById(
           "bmiResult"
         ).textContent = `Your BMI is: ${result.bmi}`;
@@ -56,7 +56,7 @@ if (calculateBtn) {
 const getSuggestionsBtn = document.getElementById("getSuggestionsBtn");
 if (getSuggestionsBtn) {
   getSuggestionsBtn.addEventListener("click", async () => {
-    console.log("here");
+    // console.log("here");
     const userDiet = document.getElementById("userDiet").value;
     const userActivity = document.getElementById("userActivity").value;
     const userRegion = document.getElementById("userRegion").value;
@@ -107,13 +107,18 @@ if (getSuggestionsBtn) {
       console.log(result);
 
       if (response.ok) {
-        suggestions = result
+        suggestions = JSON.parse(result.data);
         // next page
-        document.getElementById("breakfast").textContent = result.dietPlan.breakfast;
-        document.getElementById("lunch").textContent = result.dietPlan.lunch;
-        document.getElementById("snacks").textContent = result.dietPlan.snacks;
-        document.getElementById("dinner").textContent = result.dietPlan.dinner;
-        document.getElementById("exercisePlan").textContent = result.exercisePlan;
+        document.getElementById("sug_breakfast").textContent =
+          suggestions.dietPlan.breakfast;
+        document.getElementById("sug_lunch").textContent =
+          suggestions.dietPlan.lunch;
+        document.getElementById("sug_snacks").textContent =
+          suggestions.dietPlan.snacks;
+        document.getElementById("sug_dinner").textContent =
+          suggestions.dietPlan.dinner;
+        document.getElementById("sug_exercisePlan").textContent =
+          suggestions.exercisePlan;
         document.getElementById("suggestions").style.display = "block";
       } else {
         alert(result.error || "An error occurred while fetching suggestions.");

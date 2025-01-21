@@ -106,10 +106,14 @@ app.post("/calculate-bmi", (req, res) => {
 
 const resultFormat = {
   dietPlan: {
-    breakfast: "xxx",
-    lunch: "xxx",
-    dinner: "xxx",
-    snacks: "xxx",
+    // week1: {
+      // monday: {
+        breakfast: "xxx",
+        lunch: "xxx",
+        dinner: "xxx",
+        snacks: "xxx",
+      // },
+    // },
   },
   exercisePlan: "xxx",
 };
